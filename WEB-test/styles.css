@@ -2227,3 +2227,393 @@ html {
         font-size: 1rem;
     }
 }
+/* ============================================
+   26. МОДАЛЬНОЕ ОКНО ПРОСМОТРА ФИЛЬМА
+   ============================================ */
+.modal-movie-detail {
+    max-width: 800px !important;
+    padding: 30px !important;
+}
+
+.movie-detail-layout {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.movie-detail-poster {
+    flex: 0 0 220px;
+    position: relative;
+}
+
+.movie-detail-poster img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+}
+
+.movie-detail-rating {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(4px);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ffaa22;
+}
+
+.movie-detail-info {
+    flex: 1;
+}
+
+.movie-detail-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #fff;
+}
+
+.movie-detail-meta {
+    color: #aaa;
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+}
+
+.movie-detail-description {
+    color: #ccc;
+    line-height: 1.7;
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+}
+
+.movie-detail-price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #ffaa22;
+    margin-bottom: 20px;
+}
+
+.movie-detail-times h4 {
+    color: #aaa;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.time-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.time-btn-detail {
+    background: rgba(255, 170, 34, 0.1);
+    border: 1px solid rgba(255, 170, 34, 0.2);
+    color: #ffaa22;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    font-family: inherit;
+}
+
+.time-btn-detail:hover {
+    background: rgba(255, 170, 34, 0.2);
+    transform: scale(1.03);
+}
+
+.time-btn-detail.active {
+    background: #ffaa22;
+    color: #0f0f14;
+    border-color: #ffaa22;
+}
+
+.btn-detail-buy {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+}
+
+@media (max-width: 700px) {
+    .movie-detail-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .movie-detail-poster {
+        flex: 0 0 auto;
+        width: 200px;
+    }
+    
+    .movie-detail-title {
+        font-size: 1.4rem;
+        text-align: center;
+    }
+    
+    .movie-detail-meta {
+        text-align: center;
+    }
+    
+    .movie-detail-price {
+        text-align: center;
+    }
+    
+    .movie-detail-times h4 {
+        text-align: center;
+    }
+    
+    .time-grid {
+        justify-content: center;
+    }
+}
+/* ============================================
+   27. СОЦИАЛЬНЫЕ СЕТИ (ИКОНКИ ИЗ ПАПКИ img)
+   ============================================ */
+.social-icon-img {
+    width: 24px;
+    height: 24px;
+    display: block;
+    filter: brightness(0) invert(1);
+    transition: filter 0.3s ease;
+}
+
+/* Стили для иконок в подвале */
+.footer-social .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid #2a2a4a;
+    transition: all 0.3s ease;
+    padding: 0;
+    text-decoration: none;
+}
+
+.footer-social .social-link .social-icon-img {
+    width: 22px;
+    height: 22px;
+    filter: brightness(0) invert(1);
+    transition: filter 0.3s ease;
+}
+
+/* Цвета для каждой соцсети при наведении */
+.footer-social .social-link.vk:hover {
+    border-color: #4a76a8;
+    background: rgba(74, 118, 168, 0.15);
+}
+.footer-social .social-link.vk:hover .social-icon-img {
+    filter: brightness(0) saturate(100%) invert(45%) sepia(100%) saturate(500%) hue-rotate(190deg);
+}
+
+.footer-social .social-link.tg:hover {
+    border-color: #0088cc;
+    background: rgba(0, 136, 204, 0.15);
+}
+.footer-social .social-link.tg:hover .social-icon-img {
+    filter: brightness(0) saturate(100%) invert(35%) sepia(100%) saturate(500%) hue-rotate(180deg);
+}
+
+.footer-social .social-link.ok:hover {
+    border-color: #ee8208;
+    background: rgba(238, 130, 8, 0.15);
+}
+.footer-social .social-link.ok:hover .social-icon-img {
+    filter: brightness(0) saturate(100%) invert(55%) sepia(100%) saturate(500%) hue-rotate(0deg);
+}
+
+.footer-social .social-link:hover {
+    transform: translateY(-2px);
+}
+
+/* Стили для иконок в модальном окне контактов */
+.contacts-social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid #2a2a4a;
+    color: #aaa;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+    min-width: 120px;
+    justify-content: center;
+}
+
+.contacts-social-link .social-icon-img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+    transition: filter 0.3s ease;
+}
+
+.contacts-social-link:hover {
+    transform: translateY(-3px);
+    color: #fff;
+}
+
+.contacts-social-link.vk:hover {
+    border-color: #4a76a8;
+    background: rgba(74, 118, 168, 0.15);
+    color: #4a76a8;
+}
+.contacts-social-link.vk:hover .social-icon-img {
+    filter: brightness(0) saturate(100%) invert(45%) sepia(100%) saturate(500%) hue-rotate(190deg);
+}
+
+.contacts-social-link.tg:hover {
+    border-color: #0088cc;
+    background: rgba(0, 136, 204, 0.15);
+    color: #0088cc;
+}
+.contacts-social-link.tg:hover .social-icon-img {
+    filter: brightness(0) saturate(100%) invert(35%) sepia(100%) saturate(500%) hue-rotate(180deg);
+}
+
+.contacts-social-link.ok:hover {
+    border-color: #ee8208;
+    background: rgba(238, 130, 8, 0.15);
+    color: #ee8208;
+}
+.contacts-social-link.ok:hover .social-icon-img {
+    filter: brightness(0) saturate(100%) invert(55%) sepia(100%) saturate(500%) hue-rotate(0deg);
+}
+/* ============================================
+   27. СОЦИАЛЬНЫЕ СЕТИ (ИКОНКИ PNG/JPG)
+   ============================================ */
+.social-icon-img {
+    width: 24px;
+    height: 24px;
+    display: block;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+/* Стили для иконок в подвале */
+.footer-social .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid #2a2a4a;
+    transition: all 0.3s ease;
+    padding: 0;
+    text-decoration: none;
+}
+
+.footer-social .social-link .social-icon-img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+/* Цвета для каждой соцсети при наведении */
+.footer-social .social-link.vk:hover {
+    border-color: #4a76a8;
+    background: rgba(74, 118, 168, 0.15);
+    transform: translateY(-2px);
+}
+
+.footer-social .social-link.tg:hover {
+    border-color: #0088cc;
+    background: rgba(0, 136, 204, 0.15);
+    transform: translateY(-2px);
+}
+
+.footer-social .social-link.ok:hover {
+    border-color: #ee8208;
+    background: rgba(238, 130, 8, 0.15);
+    transform: translateY(-2px);
+}
+
+.footer-social .social-link:hover {
+    transform: translateY(-2px);
+}
+
+/* Стили для иконок в модальном окне контактов */
+.contacts-social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid #2a2a4a;
+    color: #aaa;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+    min-width: 120px;
+    justify-content: center;
+}
+
+.contacts-social-link .social-icon-img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.contacts-social-link:hover {
+    transform: translateY(-3px);
+    color: #fff;
+}
+
+.contacts-social-link.vk:hover {
+    border-color: #4a76a8;
+    background: rgba(74, 118, 168, 0.15);
+    color: #4a76a8;
+}
+
+.contacts-social-link.tg:hover {
+    border-color: #0088cc;
+    background: rgba(0, 136, 204, 0.15);
+    color: #0088cc;
+}
+
+.contacts-social-link.ok:hover {
+    border-color: #ee8208;
+    background: rgba(238, 130, 8, 0.15);
+    color: #ee8208;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 600px) {
+    .contacts-social-link {
+        min-width: 100px;
+        padding: 8px 14px;
+        font-size: 0.8rem;
+    }
+    
+    .contacts-social-link .social-icon-img {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .footer-social .social-link {
+        width: 38px;
+        height: 38px;
+    }
+    
+    .footer-social .social-link .social-icon-img {
+        width: 20px;
+        height: 20px;
+    }
+}
