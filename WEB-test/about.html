@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас — FilmStar</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        /* Дополнительные стили для страницы "О нас" */
+        .about-hero {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=2070');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+        .about-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff, #ffcc77);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .about-hero p {
+            font-size: 1.2rem;
+            color: #ccc;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .about-section {
+            padding: 60px 0;
+            border-bottom: 1px solid #1a1a2a;
+        }
+        .about-section:last-child {
+            border-bottom: none;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .about-stat {
+            background: #1a1a2a;
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid #2a2a4a;
+        }
+        .about-stat .number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #ffaa22;
+            display: block;
+        }
+        .about-stat .label {
+            color: #aaa;
+            margin-top: 10px;
+            font-size: 0.95rem;
+        }
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .about-feature {
+            background: #1a1a2a;
+            padding: 25px;
+            border-radius: 16px;
+            border-left: 4px solid #ffaa22;
+        }
+        .about-feature h3 {
+            color: #ffaa22;
+            margin-bottom: 10px;
+        }
+        .about-feature p {
+            color: #bbb;
+            line-height: 1.6;
+        }
+        .about-club {
+            background: linear-gradient(135deg, #1a1a2a, #2a1a1a);
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 30px;
+            border: 1px solid #ffaa22;
+        }
+        .about-club h2 {
+            color: #ffaa22;
+            margin-bottom: 20px;
+        }
+        .about-club ol {
+            color: #ccc;
+            line-height: 2;
+            padding-left: 20px;
+        }
+        .about-club ol li {
+            margin-bottom: 8px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: #ffaa22;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .back-link:hover {
+            color: #fff;
+            transform: translateX(-5px);
+        }
+        @media (max-width: 768px) {
+            .about-hero h1 {
+                font-size: 2.2rem;
+            }
+            .about-stat .number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ШАПКА (копия с главной) -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo" style="text-decoration: none;">
+                <span class="logo-icon">🎬</span>
+                <span class="logo-text">FilmStar</span>
+            </a>
+            <nav class="nav">
+                <a href="index.html#movies" class="nav-link">Афиша</a>
+                <a href="index.html#movies" class="nav-link">Сеансы</a>
+                <a href="index.html#footer" class="nav-link">Контакты</a>
+            </nav>
+            <div class="auth">
+                <button class="btn btn-outline" onclick="window.location.href='index.html'">На главную</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ГЕРОЙ СТРАНИЦЫ "О НАС" -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>О кинотеатре FilmStar</h1>
+            <p>Мы создали пространство, где кино становится искусством, а отдых — настоящим удовольствием. Добро пожаловать в мир премиального кинопросмотра.</p>
+        </div>
+    </section>
+
+    <!-- ОСНОВНОЕ СОДЕРЖАНИЕ -->
+    <main>
+        <!-- Цифры -->
+        <section class="about-section">
+            <div class="container">
+                <h2 class="section-title">FilmStar в цифрах</h2>
+                <div class="about-grid">
+                    <div class="about-stat">
+                        <span class="number">12</span>
+                        <span class="label">Кинозалов</span>
+                    </div>
+                    <div class="about-stat">
+                        <span class="number">8</span>
+                        <span class="label">Залов с Dolby Atmos</span>
+                    </div>
+                    <div class="about-stat">
+                        <span class="number">4</span>
+                        <span class="label">VIP-зала с диванами</span>
+                    </div>
+                    <div class="about-stat">
+                        <span class="number">2</span>
+                        <span class="label">Ресторана и бара</span>
+                    </div>
+                    <div class="about-stat">
+                        <span class="number">150+</span>
+                        <span class="label">Мероприятий в год</span>
+                    </div>
+                    <div class="about-stat">
+                        <span class="number">100</span>
+                        <span class="label">Метров до Кремля</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- О нас -->
+        <section class="about-section">
+            <div class="container">
+                <h2 class="section-title">Кинотеатр для ценителей качества</h2>
+                <p style="color: #ccc; font-size: 1.1rem; max-width: 800px; margin-bottom: 30px;">
+                    «FilmStar» — это не просто кинотеатр. Это место, где технологии встречаются с комфортом, 
+                    а каждый сеанс становится незабываемым событием.
+                </p>
+                <div class="about-features">
+                    <div class="about-feature">
+                        <h3>🎬 Превосходное качество звука</h3>
+                        <p>Передовая система Dolby Atmos создаёт объёмный звук, который полностью погружает вас в происходящее на экране. Сабвуферы воспроизводят частоты вплоть до 20 Гц.</p>
+                    </div>
+                    <div class="about-feature">
+                        <h3>🖥️ Идеальное изображение</h3>
+                        <p>Изогнутые экраны с мини-перфорацией обеспечивают чёткое и равномерное изображение без помех даже с первого ряда.</p>
+                    </div>
+                    <div class="about-feature">
+                        <h3>💺 Максимальный комфорт</h3>
+                        <p>Кресла-реклайнеры с регулируемой спинкой и подставкой для ног, а также стильные кожаные диваны в VIP-залах.</p>
+                    </div>
+                    <div class="about-feature">
+                        <h3>🍽️ Гастрономия высшего уровня</h3>
+                        <p>Средиземноморская и паназиатская кухня от шеф-повара с возможностью заказа блюд прямо в кинозал.</p>
+                    </div>
+                    <div class="about-feature">
+                        <h3>🏛️ Уникальное расположение</h3>
+                        <p>В шаговой доступности от Кремля, Большого театра и главных достопримечательностей Москвы.</p>
+                    </div>
+                    <div class="about-feature">
+                        <h3>🎉 Эпицентр событий</h3>
+                        <p>Более 150 мероприятий в год: премьеры, конференции, корпоративные вечера и частные показы.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Клубная система -->
+        <section class="about-section">
+            <div class="container">
+                <h2 class="section-title">Клубная система</h2>
+                <div class="about-club">
+                    <h2>🌟 Станьте членом клуба FilmStar</h2>
+                    <p style="color: #ccc; margin-bottom: 20px;">Кинотеатр работает по клубной системе, что гарантирует максимальный комфорт и приватность.</p>
+                    <ol>
+                        <li><strong>Внесите депозит</strong> на клубную карту в размере 50 000 ₽, который будет расходоваться на просмотры, аренду залов, попкорн и ресторан.</li>
+                        <li><strong>Активируйте карту</strong> при первом визите, предоставив паспорт и заключив договор оказания услуг.</li>
+                        <li><strong>Наслаждайтесь</strong> просмотром без очередей и забот — всё включено в ваш клубный статус.</li>
+                        <li><strong>Карта действует 12 месяцев</strong> с момента последнего пополнения.</li>
+                        <li><strong>Делите карту</strong> с совладельцем — до 2 человек могут пользоваться одним счётом.</li>
+                        <li><strong>Получите доступ</strong> к личному кабинету и мобильному приложению для управления бронированиями.</li>
+                    </ol>
+                    <p style="color: #ffaa22; margin-top: 20px; font-weight: 600;">☎️ Клиентский сервис: +7 (495) 123-45-67 (ежедневно с 9:00 до 23:00)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Кнопка назад -->
+        <div class="container" style="text-align: center; padding: 40px 0;">
+            <a href="index.html" class="back-link">← Вернуться на главную</a>
+        </div>
+    </main>
+
+    <!-- ПОДВАЛ -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-col">
+                <div class="logo" style="cursor:pointer;">
+                    <span class="logo-icon">🎬</span>
+                    <span class="logo-text">FilmStar</span>
+                </div>
+                <p class="footer-text">Кинотеатр премиального качества с 4DX и IMAX залами.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Контакты</h4>
+                <p><a href="tel:+74951234567" class="contact-link">📞 +7 (495) 123-45-67</a></p>
+                <p><a href="mailto:info@kinomir.ru" class="contact-link">✉️ info@kinomir.ru</a></p>
+                <p>📍 ул. Кино, д. 1, Москва</p>
+            </div>
+            <div class="footer-col">
+                <h4>Режим работы</h4>
+                <p>Ежедневно с 9:00 до 23:00</p>
+                <p>Касса до 22:30</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 КиноМир. Все права защищены.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

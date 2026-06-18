@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>КиноМир — купить билеты в кино</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ШАПКА -->
+<header class="header">
+    <div class="container header-container">
+        <div class="logo" id="mainLogo">
+            <span class="logo-icon">🎬</span>
+            <span class="logo-text">FilmStar</span>
+        </div>
+        <nav class="nav">
+            <a href="#" class="nav-link active" id="navSeansy">Сеансы</a>
+            <a href="#" class="nav-link" id="navContacts">Контакты</a>
+        </nav>
+        <div class="header-actions">
+            <button class="btn-cart" id="cartBtn" aria-label="Корзина">
+                <span class="cart-icon">🛒</span>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </button>
+            <div class="auth" id="authContainer">
+                <button class="btn btn-outline" id="authBtn">Войти</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <!-- ГЛАВНЫЙ БАННЕР -->
+    <section class="hero" id="home">
+        <div class="hero-background"></div>
+        <div class="container hero-content">
+            <h1 class="hero-title">Билеты в кино<br>по лучшим ценам</h1>
+            <p class="hero-subtitle">Выбирай фильм, место и оплачивай онлайн — без комиссии</p>
+            <button class="btn btn-primary btn-large" id="scrollToMovies">Выбрать фильм →</button>
+        </div>
+        <div class="hero-scroll-indicator" id="scrollIndicator">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 13l5 5 5-5"/>
+                <path d="M7 6l5 5 5-5"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- НОВИНКИ КИНОПРОКАТА -->
+    <section class="movies-section" id="newReleases">
+        <div class="movies-section-bg"></div>
+        <div class="container">
+            <div class="movies-section-header">
+                <h2 class="section-title">🔥 Новинки кинопроката</h2>
+            </div>
+            <div class="movies-scroll-wrapper">
+                <div class="movies-scroll" id="newReleasesScroll"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- В ПРОКАТЕ -->
+    <section class="movies-section" id="nowShowing">
+        <div class="movies-section-bg movies-section-bg-2"></div>
+        <div class="container">
+            <div class="movies-section-header">
+                <h2 class="section-title">🎬 В прокате</h2>
+            </div>
+
+            <div class="tabs-container">
+                <button class="tab-btn active" data-tab="nowShowing">Сейчас в прокате</button>
+                <button class="tab-btn" data-tab="comingSoon">Скоро в прокате</button>
+            </div>
+
+            <div class="tab-content active" id="tab-nowShowing">
+                <div class="movies-scroll-wrapper">
+                    <div class="movies-scroll" id="nowShowingScroll"></div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-comingSoon">
+                <div class="movies-scroll-wrapper">
+                    <div class="movies-scroll" id="comingSoonScroll"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- МОДАЛЬНОЕ ОКНО АВТОРИЗАЦИИ -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-modal-content">
+            <span class="auth-modal-close" id="authModalClose">&times;</span>
+            <h2 id="authModalTitle">Вход</h2>
+            <form id="authForm">
+                <div class="auth-form-group">
+                    <label for="authEmail">Email</label>
+                    <input type="email" id="authEmail" placeholder="example@mail.ru" required>
+                </div>
+                <div class="auth-form-group">
+                    <label for="authPassword">Пароль</label>
+                    <input type="password" id="authPassword" placeholder="••••••••" required minlength="6">
+                </div>
+                <button type="submit" class="auth-btn" id="authSubmitBtn">Войти</button>
+            </form>
+            <div class="auth-switch">
+                <span id="authSwitchText">Нет аккаунта? <a id="authSwitchLink">Зарегистрироваться</a></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО ВЫБОРА МЕСТ -->
+    <div class="modal" id="seatModal">
+        <div class="modal-content">
+            <span class="modal-close" id="closeModalBtn">&times;</span>
+            <h3 id="modalMovieTitle" class="modal-movie-title">Название фильма</h3>
+            <div class="hall-scheme">
+                <div class="screen">ЭКРАН</div>
+                <div class="seats-container" id="seatsContainer"></div>
+            </div>
+            <div class="seat-legend">
+                <span><span class="seat-example free"></span> Свободно</span>
+                <span><span class="seat-example selected"></span> Выбрано</span>
+                <span><span class="seat-example occupied"></span> Занято</span>
+            </div>
+            <div class="booking-info">
+                <div class="selected-info">
+                    Выбрано мест: <span id="selectedCount">0</span>
+                    Сумма: <span id="totalPrice">0</span> ₽
+                    <span id="discountBadge" style="display: none; color: #34a853; font-size: 0.8rem; margin-left: 10px;"></span>
+                </div>
+                <button class="btn btn-primary" id="addToCartBtn">Добавить в корзину</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО КОРЗИНЫ -->
+    <div class="modal-cart" id="cartModal">
+        <div class="modal-cart-content">
+            <span class="modal-cart-close" id="cartModalClose">&times;</span>
+            <h2>🛒 Корзина</h2>
+            <div class="cart-empty" id="cartEmpty">
+                <p>Корзина пуста</p>
+                <p class="cart-empty-sub">Выберите фильм и добавьте билеты</p>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <!-- Сюда будут добавляться товары -->
+            </div>
+            <div class="cart-summary" id="cartSummary" style="display: none;">
+                <div class="cart-total-row">
+                    <span>Итого:</span>
+                    <span class="cart-total-price" id="cartTotalPrice">0 ₽</span>
+                </div>
+                <div class="cart-discount-row" id="cartDiscountRow" style="display: none;">
+                    <span>Скидка 5%:</span>
+                    <span class="cart-discount-amount" id="cartDiscountAmount">-0 ₽</span>
+                </div>
+                <div class="cart-final-row">
+                    <span>К оплате:</span>
+                    <span class="cart-final-price" id="cartFinalPrice">0 ₽</span>
+                </div>
+                <button class="btn btn-primary btn-checkout" id="checkoutBtn">Перейти к оплате</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО ОПЛАТЫ -->
+    <div class="modal-payment" id="paymentModal">
+        <div class="modal-payment-content">
+            <span class="modal-payment-close" id="paymentModalClose">&times;</span>
+            <h2>💳 Оплата билетов</h2>
+            <p class="payment-subtitle">Заполните данные для оплаты</p>
+            
+            <form id="paymentForm">
+                <div class="payment-card">
+                    <div class="payment-card-header">
+                        <span class="payment-card-icon">💳</span>
+                        <span class="payment-card-label">Банковская карта</span>
+                    </div>
+                    
+                    <div class="payment-form-group">
+                        <label for="cardNumber">Номер карты</label>
+                        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                    </div>
+                    
+                    <div class="payment-form-row">
+                        <div class="payment-form-group">
+                            <label for="cardExpiry">Срок действия</label>
+                            <input type="text" id="cardExpiry" placeholder="ММ/ГГ" maxlength="5" required>
+                        </div>
+                        <div class="payment-form-group">
+                            <label for="cardCvc">CVC</label>
+                            <input type="text" id="cardCvc" placeholder="123" maxlength="4" required>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-form-group">
+                        <label for="cardHolder">Владелец карты</label>
+                        <input type="text" id="cardHolder" placeholder="ИМЯ ФАМИЛИЯ" required>
+                    </div>
+                </div>
+
+                <div class="payment-order-summary">
+                    <div class="payment-order-row">
+                        <span>Билетов:</span>
+                        <span id="paymentTicketsCount">0</span>
+                    </div>
+                    <div class="payment-order-row">
+                        <span>Сумма:</span>
+                        <span id="paymentTotalPrice">0 ₽</span>
+                    </div>
+                    <div class="payment-order-row payment-discount-row" id="paymentDiscountRow" style="display: none;">
+                        <span>Скидка 5%:</span>
+                        <span id="paymentDiscountAmount">-0 ₽</span>
+                    </div>
+                    <div class="payment-order-row payment-final-row">
+                        <span>К оплате:</span>
+                        <span id="paymentFinalPrice">0 ₽</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-payment-submit">Оплатить</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО УСПЕШНОЙ ОПЛАТЫ -->
+    <div class="modal-success" id="successModal">
+        <div class="modal-success-content">
+            <div class="success-icon">✅</div>
+            <h2>Оплата прошла успешно!</h2>
+            <p>Билеты отправлены на вашу почту</p>
+            <p class="success-details" id="successDetails">Спасибо за покупку!</p>
+            <button class="btn btn-primary" id="successCloseBtn">Отлично!</button>
+        </div>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО КОНТАКТОВ -->
+    <div class="modal-contacts" id="contactsModal">
+        <div class="modal-contacts-content">
+            <span class="modal-contacts-close" id="contactsModalClose">&times;</span>
+            <h2>📬 Свяжитесь с нами</h2>
+            <p class="contacts-subtitle">Мы всегда рады помочь! Выберите удобный способ связи.</p>
+            
+            <div class="contacts-grid">
+                <!-- Телефон -->
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div class="contact-info">
+                        <h4>Телефон</h4>
+                        <a href="tel:+74951234567" class="contact-link-main">+7 (495) 123-45-67</a>
+                        <p class="contact-desc">Ежедневно с 9:00 до 23:00</p>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <div class="contact-info">
+                        <h4>Электронная почта</h4>
+                        <a href="mailto:info@kinomir.ru" class="contact-link-main">info@kinomir.ru</a>
+                        <p class="contact-desc">Ответим в течение 24 часов</p>
+                    </div>
+                </div>
+
+                <!-- Адрес -->
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-info">
+                        <h4>Адрес</h4>
+                        <p class="contact-link-main">ул. Кино, д. 1, Москва</p>
+                        <p class="contact-desc">м. Кинотеатральная</p>
+                    </div>
+                </div>
+
+                <!-- Режим работы -->
+                <div class="contact-item">
+                    <div class="contact-icon">🕐</div>
+                    <div class="contact-info">
+                        <h4>Режим работы</h4>
+                        <p class="contact-link-main">Ежедневно: 9:00 – 23:00</p>
+                        <p class="contact-desc">Касса до 22:30</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Социальные сети -->
+            <div class="contacts-social">
+                <h3>Мы в социальных сетях</h3>
+                <div class="contacts-social-links">
+                    <a href="https://vk.com" target="_blank" class="contacts-social-link vk">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.162 18.994c.609 0 .858-.406.851-.915-.031-1.917.714-2.949 2.059-1.604 1.488 1.488 1.796 2.519 3.603 2.519h3.2c.808 0 1.126-.26 1.126-.668 0-.863-1.421-2.386-2.625-3.504-1.686-1.565-1.765-1.602-.313-3.486 1.801-2.339 2.272-3.327 1.996-3.739-.272-.406-.886-.518-1.498-.518h-3.454c-.38 0-.662.104-.843.464-.18.36-.604 1.211-1.231 2.339-.782 1.396-1.297 2.004-1.698 2.004-.254 0-.425-.193-.425-.719V6.138c0-.65-.206-1.001-.86-1.001H8.868c-.524 0-.787.287-.787.567 0 .328.407.412.668.758.335.443.427 1.027.427 1.602v2.722c0 .672-.116.792-.401.792-.619 0-1.714-1.767-2.438-3.792-.23-.64-.462-1.163-.816-1.163H3.14c-.747 0-.9.34-.9.718 0 .292.238.917.96 2.141 1.388 2.356 3.391 4.422 4.907 5.688 1.457 1.214 2.396 1.227 3.055 1.227z"/></svg>
+                        <span>ВКонтакте</span>
+                    </a>
+                    <a href="https://t.me" target="_blank" class="contacts-social-link tg">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                        <span>Telegram</span>
+                    </a>
+                    <a href="https://ok.ru" target="_blank" class="contacts-social-link ok">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/><circle cx="12" cy="8" r="2"/><path d="M12 13.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm0 2.5c-3.2 0-9 1.6-9 4.8V22h18v-2.2c0-3.2-5.8-4.8-9-4.8z"/></svg>
+                        <span>Одноклассники</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="contacts-note">
+                <p>💡 Дополнительная информация и бронирование билетов по телефону <a href="tel:+74951234567" class="contact-link-main">+7 (495) 123-45-67</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ПОДВАЛ -->
+    <footer class="footer" id="footer">
+        <div class="container footer-container">
+            <div class="footer-col footer-col-brand">
+                <div class="logo" id="footerLogo" style="cursor:pointer;">
+                    <span class="logo-icon">🎬</span>
+                    <span class="logo-text">FilmStar</span>
+                </div>
+                <p class="footer-text">Кинотеатр для ценителей качества</p>
+                <nav class="footer-nav">
+                    <a href="index.html#movies" class="footer-nav-link">Сеансы</a>
+                    <a href="about.html" class="footer-nav-link">О нас</a>
+                    <a href="index.html#footer" class="footer-nav-link">Контакты</a>
+                </nav>
+            </div>
+
+            <div class="footer-col footer-col-contacts">
+                <div class="footer-contacts">
+                    <h4>Контакты</h4>
+                    <p>
+                        <a href="tel:+74951234567" class="contact-link">+7 (495) 123-45-67</a>
+                    </p>
+                    <p>
+                        <a href="mailto:info@kinomir.ru" class="contact-link">info@kinomir.ru</a>
+                    </p>
+                    <p>ул. Кино, д. 1, Москва</p>
+                </div>
+                
+                <div class="footer-social">
+                    <h4>Мы в соцсетях</h4>
+                    <div class="social-links">
+                        <a href="https://vk.com" target="_blank" class="social-link vk" title="ВКонтакте" aria-label="ВКонтакте">
+                            <span class="social-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.162 18.994c.609 0 .858-.406.851-.915-.031-1.917.714-2.949 2.059-1.604 1.488 1.488 1.796 2.519 3.603 2.519h3.2c.808 0 1.126-.26 1.126-.668 0-.863-1.421-2.386-2.625-3.504-1.686-1.565-1.765-1.602-.313-3.486 1.801-2.339 2.272-3.327 1.996-3.739-.272-.406-.886-.518-1.498-.518h-3.454c-.38 0-.662.104-.843.464-.18.36-.604 1.211-1.231 2.339-.782 1.396-1.297 2.004-1.698 2.004-.254 0-.425-.193-.425-.719V6.138c0-.65-.206-1.001-.86-1.001H8.868c-.524 0-.787.287-.787.567 0 .328.407.412.668.758.335.443.427 1.027.427 1.602v2.722c0 .672-.116.792-.401.792-.619 0-1.714-1.767-2.438-3.792-.23-.64-.462-1.163-.816-1.163H3.14c-.747 0-.9.34-.9.718 0 .292.238.917.96 2.141 1.388 2.356 3.391 4.422 4.907 5.688 1.457 1.214 2.396 1.227 3.055 1.227z"/></svg>
+                            </span>
+                        </a>
+                        <a href="https://t.me" target="_blank" class="social-link tg" title="Telegram" aria-label="Telegram">
+                            <span class="social-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                            </span>
+                        </a>
+                        <a href="https://ok.ru" target="_blank" class="social-link ok" title="Одноклассники" aria-label="Одноклассники">
+                            <span class="social-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/><circle cx="12" cy="8" r="2"/><path d="M12 13.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm0 2.5c-3.2 0-9 1.6-9 4.8V22h18v-2.2c0-3.2-5.8-4.8-9-4.8z"/></svg>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p>© 2026 КиноМир. Все права защищены.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy.html">Политика конфиденциальности</a>
+                    <a href="terms.html">Пользовательское соглашение</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- КНОПКА "НАВЕРХ" -->
+    <button class="btn-scroll-top" id="scrollTopBtn" aria-label="Наверх">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 19V5"/>
+            <path d="M5 12l7-7 7 7"/>
+        </svg>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
